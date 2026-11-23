@@ -85,8 +85,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <!-- Headline -->
             <h1 class="lp-headline">
-                Certificate<br>Management<br><span>System</span>
+                Training<br>Certificate<br><span>Management</span>
             </h1>
+
+            <p class="lp-subline">Issue, archive and verify training certificates with ease.</p>
+
+            <!-- Feature cards grid -->
+            <div class="lp-features">
+                <div class="lp-feat">
+                    <div class="lp-feat__icon">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </div>
+                    <div class="lp-feat__body">
+                        <div class="lp-feat__title">PDF Certificates</div>
+                        <div class="lp-feat__desc">Auto-generated and downloadable</div>
+                    </div>
+                </div>
+                <div class="lp-feat">
+                    <div class="lp-feat__icon" style="background:rgba(16,185,129,.15);color:#34d399;">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <div class="lp-feat__body">
+                        <div class="lp-feat__title">Public Verification</div>
+                        <div class="lp-feat__desc">Verify any certificate instantly</div>
+                    </div>
+                </div>
+                <div class="lp-feat">
+                    <div class="lp-feat__icon" style="background:rgba(234,179,8,.12);color:#facc15;">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div class="lp-feat__body">
+                        <div class="lp-feat__title">Live Analytics</div>
+                        <div class="lp-feat__desc">Dashboard with real-time stats</div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Stats row -->
             <div class="lp-stats">
@@ -103,25 +136,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="lp-stat">
                     <div class="lp-stat__num">25+</div>
                     <div class="lp-stat__lbl">Participants</div>
-                </div>
-            </div>
-
-            <!-- Certificate preview card -->
-            <div class="lp-cert-card">
-                <div class="lp-cert-card__header">
-                    <div class="lp-cert-card__badge">
-                        <i class="fa-solid fa-certificate"></i>
-                        Certificate of Completion
-                    </div>
-                    <span class="lp-cert-card__status">
-                        <i class="fa-solid fa-circle-check"></i> Valid
-                    </span>
-                </div>
-                <div class="lp-cert-card__name">Sarah Al-Ghamdi</div>
-                <div class="lp-cert-card__course">Advanced Web Development with PHP &amp; MySQL</div>
-                <div class="lp-cert-card__footer">
-                    <span><i class="fa-regular fa-calendar"></i> 20 Feb 2026</span>
-                    <span class="lp-cert-card__id">CERT-2026-89B4C12E</span>
                 </div>
             </div>
 
