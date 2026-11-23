@@ -1,0 +1,12 @@
+{
+    "name": "tcmas/training-certificate-system",
+    "description": "Training Certificate Management and Archive System — CIT1303",
+    "type": "project",
+    "require": {
+        "php": ">=8.2",
+        "dompdf/dompdf": "^3.0"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}
