@@ -1,0 +1,16 @@
+.git
+.gitignore
+.vscode
+.idea
+*.code-workspace
+vendor
+docs
+storage/certificates/*.pdf
+*.log
+/logs
+/tmp
+*.tmp
+*.cache
+.DS_Store
+Thumbs.db
+desktop.ini

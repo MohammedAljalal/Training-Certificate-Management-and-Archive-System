@@ -178,9 +178,12 @@ for ($attempt = 1; $attempt <= $maxAttempts; $attempt++) {
         // Step 5: INSERT certificate record
         $cModel->insert($enrollmentId, $certNumber, $issuedDate, $filePath);
 
-        // Step 6: Move temp file to final location
-        if (!rename($tempFile, $finalFile)) {
-            throw new RuntimeException('Failed to move PDF to storage directory.');
+        // Step 6: Move temp file to final location (fallback to copy+unlink across Railway volume mounts)
+        if (!@rename($tempFile, $finalFile)) {
+            if (!copy($tempFile, $finalFile)) {
+                throw new RuntimeException('Failed to move PDF to storage directory.');
+            }
+            @unlink($tempFile);
         }
         $tempFile = ''; // prevent double-cleanup
 
@@ -248,7 +251,9 @@ function renderCertificateHtml(
     $certNo     = htmlspecialchars($certNumber, ENT_QUOTES, 'UTF-8');
 
     $verifyHost = $_SERVER['HTTP_HOST'] ?? 'localhost:8000';
-    $verifyProto = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $isHttps    = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+    $verifyProto = $isHttps ? 'https' : 'http';
     $verifyUrl = "{$verifyProto}://{$verifyHost}/verify.php";
 
     return <<<HTML

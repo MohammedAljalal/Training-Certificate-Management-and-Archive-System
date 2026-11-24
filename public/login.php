@@ -160,16 +160,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h2 class="login-card__title">Welcome back</h2>
             <p class="login-card__subtitle">Sign in to your account to continue.</p>
 
-            <!-- Demo Role Switcher -->
-            <div class="login-role-tabs">
-                <button type="button" class="role-tab-btn active" id="btnRoleAdmin" onclick="setDemoRole('admin')">
-                    <i class="fa-solid fa-shield-halved"></i> Administrator
-                </button>
-                <button type="button" class="role-tab-btn" id="btnRoleParticipant" onclick="setDemoRole('participant')">
-                    <i class="fa-solid fa-user-graduate"></i> Participant
-                </button>
-            </div>
-
             <?php if ($error): ?>
                 <div class="alert alert--error" data-auto-dismiss>
                     <i class="fa-solid fa-circle-xmark"></i>
@@ -257,31 +247,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <script>
-function setDemoRole(role) {
-    const emailInput = document.getElementById('email');
-    const passInput  = document.getElementById('password');
-    const btnAdmin   = document.getElementById('btnRoleAdmin');
-    const btnPart    = document.getElementById('btnRoleParticipant');
-
-    if (role === 'admin') {
-        btnAdmin.classList.add('active');
-        btnPart.classList.remove('active');
-        emailInput.value = 'admin@tcmas.local';
-        passInput.value  = 'Admin@1234';
-    } else {
-        btnPart.classList.add('active');
-        btnAdmin.classList.remove('active');
-        emailInput.value = 'm.otaibi@example.com';
-        passInput.value  = 'Password@123';
-    }
-    emailInput.style.borderColor = '#4f46e5';
-    passInput.style.borderColor  = '#4f46e5';
-    setTimeout(() => {
-        emailInput.style.borderColor = '';
-        passInput.style.borderColor  = '';
-    }, 500);
-}
-
 // Password visibility toggle
 const toggleBtn  = document.getElementById('togglePasswordBtn');
 const passInput  = document.getElementById('password');
