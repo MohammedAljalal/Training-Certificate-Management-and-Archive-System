@@ -5,6 +5,11 @@ composer.phar
 # ── Generated PDF Certificates (storage) ──────────────────────────────────
 storage/certificates/*.pdf
 
+# ── Environment files (never commit secrets) ──────────────────────────────
+.env
+.env.local
+.env.*.local
+
 # ── PHP config secrets (never commit credentials) ─────────────────────────
 # config/db.php is included but mark as sensitive in README
 

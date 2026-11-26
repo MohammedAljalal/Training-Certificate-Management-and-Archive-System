@@ -14,11 +14,14 @@
 declare(strict_types=1);
 
 // ── Database connection parameters ──────────────────────────────────────────
-define('DB_HOST', getenv('DB_HOST') ?: (getenv('MYSQLHOST') ?: '127.0.0.1'));
-define('DB_PORT', getenv('DB_PORT') ?: (getenv('MYSQLPORT') ?: '3306'));
-define('DB_NAME', getenv('DB_NAME') ?: (getenv('MYSQLDATABASE') ?: 'tcmas'));
-define('DB_USER', getenv('DB_USER') ?: (getenv('MYSQLUSER') ?: 'root'));
-define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : (getenv('MYSQLPASSWORD') !== false ? getenv('MYSQLPASSWORD') : ''));
+$dbUrl = getenv('MYSQL_URL') ?: (getenv('DATABASE_URL') ?: '');
+$parsedUrl = $dbUrl ? (parse_url($dbUrl) ?: []) : [];
+
+define('DB_HOST', getenv('DB_HOST') ?: (getenv('MYSQLHOST') ?: ($parsedUrl['host'] ?? '127.0.0.1')));
+define('DB_PORT', getenv('DB_PORT') ?: (getenv('MYSQLPORT') ?: (isset($parsedUrl['port']) ? (string)$parsedUrl['port'] : '3306')));
+define('DB_NAME', getenv('DB_NAME') ?: (getenv('MYSQLDATABASE') ?: (isset($parsedUrl['path']) ? ltrim($parsedUrl['path'], '/') : 'tcmas')));
+define('DB_USER', getenv('DB_USER') ?: (getenv('MYSQLUSER') ?: ($parsedUrl['user'] ?? 'root')));
+define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : (getenv('MYSQLPASSWORD') !== false ? getenv('MYSQLPASSWORD') : ($parsedUrl['pass'] ?? '')));
 define('DB_CHARSET', 'utf8mb4');
 
 /**
