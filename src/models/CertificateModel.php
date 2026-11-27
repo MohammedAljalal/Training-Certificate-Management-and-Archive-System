@@ -113,7 +113,8 @@ class CertificateModel
             SELECT cert.*,
                    u.full_name  AS participant_name,
                    c.title      AS course_title,
-                   e.completion_date
+                   e.completion_date,
+                   e.user_id    AS participant_id
             FROM certificates cert
             JOIN enrollments e ON e.id = cert.enrollment_id
             JOIN users u       ON u.id = e.user_id
